@@ -36,6 +36,9 @@ class ViewPagerFragment : Fragment() {
 
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
+        // crashes
+//        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move)
+
         return binding.root
     }
 }
