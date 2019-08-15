@@ -16,8 +16,10 @@
 
 package com.google.samples.apps.sunflower.data
 
+import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.samples.apps.sunflower.utilities.getValue
@@ -41,7 +43,10 @@ class GardenPlantingDaoTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before fun createDb() {
+        //获取Context，两种方式
+        val context1 = ApplicationProvider.getApplicationContext<Context>()
         val context = InstrumentationRegistry.getInstrumentation().targetContext
+
         database = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
         gardenPlantingDao = database.gardenPlantingDao()
 

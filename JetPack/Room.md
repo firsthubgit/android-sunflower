@@ -1,6 +1,6 @@
 litepal框架一样功能
 
-
+[csdn链接](https://blog.csdn.net/Alexwll/article/details/83033460)
 ## 实体
 用以下方式创建一个表和对应的实体。不指定表名，默认使用类名作为表名（SQLite中的表名称不区分大小写）。不指定列名，默认使用字段名成作为列名
  ```kotlin
@@ -118,6 +118,10 @@ interface UserDao {
            "OR last_name LIKE :search")
     fun findUserWithName(search: String): List<User>
     
+    //可观察的返回数据，返回一个可操作的Cursor也可以
+    @Query("SELECT first_name, last_name FROM user WHERE region IN (:regions)")
+    fun loadUsersFromRegionsSync(regions: List<String>): LiveData<List<User>>
+    
 }
 ```
 
@@ -176,6 +180,8 @@ https://developer.android.com/training/data-storage/room/index.html
 
 &nbsp;&nbsp;
 ## 数据库迁移
+   [官方文档连接][https://developer.android.com/training/data-storage/room/migrating-db-versions]
+   
    无论是添加或重命名了某个列或某个表，每次改变数据库的Schema时
    
    1.更新数据库版本

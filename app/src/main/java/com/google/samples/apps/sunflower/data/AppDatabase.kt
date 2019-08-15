@@ -38,6 +38,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
 
+        public lateinit  var dbase : SupportSQLiteDatabase
         // For Singleton instantiation
         @Volatile private var instance: AppDatabase? = null
 
@@ -54,6 +55,7 @@ abstract class AppDatabase : RoomDatabase() {
                     .addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
+                            dbase = db
                             val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
                             WorkManager.getInstance(context).enqueue(request)
                         }
