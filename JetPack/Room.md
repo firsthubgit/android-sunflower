@@ -6,6 +6,7 @@ litepal框架一样功能
  ```kotlin
    @Entity(tableName = "userDataBase", primaryKeys = ["id", "name"]) //定义表格名称
    class User {
+        //让id=0的时候，它会自动增加，设置具体的值，就按具体的值来增长
         @PrimaryKey(autoGenerate = true)// 单个主键设置为自增长
         @ColumnInfo(name = "user_id")  //列信息
         var id = 0
@@ -192,6 +193,12 @@ https://developer.android.com/training/data-storage/room/index.html
     
 &nbsp;&nbsp;
 ## 测试
+
+```kotlin
+   //获取Context，两种方式
+   val context1 = ApplicationProvider.getApplicationContext<Context>()
+   val context = InstrumentationRegistry.getInstrumentation().targetContext
+```
  1.需要实现AndroidJUnitTest来创建一个内存数据库，内存数据库仅会在进程处于活动状态时保留数据，
  也就是说，每次测试后，数据库都将被清除
  

@@ -18,6 +18,7 @@ package com.google.samples.apps.sunflower.worker
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.work.ListenableWorker.Result
 import androidx.work.WorkManager
 import androidx.work.testing.TestListenableWorkerBuilder
@@ -29,7 +30,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
+@RunWith(AndroidJUnit4::class)
 class RefreshMainDataWorkTest {
     private lateinit var context: Context
     private lateinit var workManager: WorkManager
